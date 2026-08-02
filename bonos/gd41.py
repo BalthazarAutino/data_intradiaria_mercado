@@ -3,13 +3,25 @@ from datetime import datetime, timedelta
 import pandas as pd
 import requests
 from dotenv import load_dotenv
+import sys
+from pathlib import Path
+
+# Le enseñamos a Python a mirar la raíz del proyecto para encontrar 'utils'
+RAIZ = Path(__file__).resolve().parent.parent
+if str(RAIZ) not in sys.path:
+    sys.path.append(str(RAIZ))
+
+from utils.auth import obtener_token
+
+# Ahora podés pedir el token directamente:
+token = obtener_token()
 
 load_dotenv()
 
 IOL_USERNAME = os.getenv("IOL_USERNAME")
 IOL_PASSWORD = os.getenv("IOL_PASSWORD")
 
-ticker = "GD38"
+ticker = "GD41"
 ticker_bonito = ticker.lower()
 
 def obtener_token():
